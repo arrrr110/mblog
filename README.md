@@ -11,6 +11,25 @@ https://segmentfault.com/a/1190000013671248
 https://pypi.org/project/django-markdown/#id1
 7. 内容中可正常插入图片；
 8. 基本注册能力
+
+
+## MVT分析
+模型
+* 文章
+    * 标题
+    * 正文
+    * 发布时间
+    * 修改时间
+    * 浏览量
+* 分类
+    * 和文章一对多……
+    * 分类Category
+* 标签
+    * 标签
+
+
+
+
 ### 前端
 略
 

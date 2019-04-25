@@ -1,0 +1,13 @@
+{% for c in cats %}
+
+    {% if c == act_cat %} 
+
+{% else  %} 
+
+    {% endif %}
+    
+    <a href="{% url 'category'  c.slug %}" class="btn btn-lg btn-outline">
+            <i class="fa fa-book"></i> {{ c.name }}
+        </a>
+
+{% endfor %}
