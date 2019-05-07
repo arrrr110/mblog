@@ -1,0 +1,17 @@
+{% extends 'rick/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}敖瑞的博客{{ article }}{% endblock %}
+
+{% block body_block %}
+
+{% if object %}
+<h1>标题：{{ article.title }}</h1>
+<p>内容：{{ article.body }}</p>
+<p>发表人: {{ article.category.slug }}</p>
+<p>发表于: {{ article.create_date|date }}</p>
+{% else %}
+article_detial.html未获得目标文章数据
+{% endif %}
+{% endblock %}

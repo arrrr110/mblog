@@ -72,10 +72,10 @@ class Article(models.Model):
     create_date = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
     update_date = models.DateTimeField(verbose_name='修改时间', auto_now=True)
     views = models.IntegerField(verbose_name='阅览量', default=0)
-
+    likes = models.IntegerField(verbose_name='喜爱量', default=0)
     # 文章唯一标识符
     # 文章标记用id即可
-    category = models.ForeignKey(Category, 'on_delete=models.CASCADE,',verbose_name='文章分类')
+    category = models.ForeignKey(Category, 'on_delete=models.SET_NULL,',verbose_name='文章分类')
     tags = models.ManyToManyField(Tag, verbose_name='标签')
     keywords = models.ManyToManyField(
         Keyword, verbose_name='文章关键词',

@@ -1,18 +1,17 @@
-﻿{% extends 'rick/base.html' %}
+{% extends 'rick/base.html' %}
 
 {% load staticfiles %}
 
-{% block title %}敖瑞的博客{{ category_name }}{% endblock %}
+{% block title %}{{ category.name }}{% endblock %}
 
 {% block body_block %}
 
-{% for article in object_list %}
+{% for article in article %}
 <div  class="text-left">
 <ul>
 <div class="hero-unit">
     <h1 class="skills" >
-        <a href="{{ article.category.slug }}/{{ article.id }}/">{{ article.title }}
-        </a>
+        <a href="{% url 'rick:article-detail' article.id %}">{{ article.title }}</a>
         <a href="{{ article.category.slug }}/">
             <small>{{ article.category.name }}</small>
         </a>
@@ -36,8 +35,10 @@
     </p>
 </ul>
 </div>
+
 {% empty %}
-    <li>index.html:No articles yet.gogogo</li>
+打印打印{{ context_dict }}
+    <li>category_list.html:No articles yet.</li>
 {% endfor %}
 </ul>
 {% endblock %}
