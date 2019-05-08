@@ -7,7 +7,10 @@ from .models import Category, Article
 from django.views.generic import ListView, DetailView
 from django.utils import timezone
 from datetime import datetime
+import markdown
 
+
+# 首页展示
 class IndexView(ListView):
     # 获取数据库中的文章列表
     model = Article
@@ -24,66 +27,47 @@ class IndexView(ListView):
         """Return the last five published questions."""
         return Article.objects.order_by('-create_date')[:4]
 
-
+# 文章详情页
 class ArticleDetailView(DetailView):
 
     model = Article
+
+    def get_object(self):
+        obj = super().get_object()
+        # 设置浏览量增加时间判断,同一篇文章两次浏览超过半小时才重新统计阅览量,作者浏览忽略
+        u = self.request.user
+        ses = self.request.session
+        obj.update_views()
+        return obj
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
 
-def category_list(request, category):
-    try:
-        category_post = Article.objects.filter(category__name__iexact=category)
-    except article.DoesNotExist:
-        raise Http404
-    return render(request, 'category_list.html', {"category_post": category_post})
+# 列表详情页
 
-# 文章详情页
-def article(request, article_id):
-    pass
-    # article = get_object_or_404(Article, pk=article_id)
-    # return render(request, 'rick/detail.html', {'article': article})
+class CategoryListView(ListView):
 
-# # 无法取得数据，先放一放
-# class ArticleDetailView(DetailView):
-#     # 获取数据库中的文章列表
-#     model = Article
-#     template_name = 'rick/article_detail.html' 
-#     # # template_name属性用于指定使用哪个模板进行渲染
-#     # template_name = 'rick/article_detail.html'
-#     context_object_name = 'object'
-#     # pk_url_kwarg ="pk"
-#     # 在 get_context_data() 函数中可以用于传递一些额外的内容到网页
-#     def get_context_data(self, **kwargs):
-#         context = super(ArticleDetailView,self).get_context_data(**kwargs)
-#         context['now'] = timezone.now()
-#         print('*'*100,context)
-#         return context
+    model = Article
+    template_name = 'rick/category_list.html'
+    context_object_name = 'category_list'
+    def get_queryset(self):
+        cate = get_object_or_404(Category, pk=self.kwargs.get('slug'))
+        return super().get_queryset().filter(category=cate)
 
-# class DetailView(DetailView):
-#     """
-#         Django有基于类的视图DetailView,用于显示一个对象的详情页，我们继承它
-#     """
-#     # 获取数据库中的文章列表
-#     model = Article
-#     # template_name属性用于指定使用哪个模板进行渲染
-#     template_name = 'article.html'
-#     # context_object_name属性用于给上下文变量取名（在模板中使用该名字）
-#     context_object_name = 'article'
-
-#     def get_context_data(self, **kwargs):
-#         context = super(DetailView, self).get_context_data(**kwargs)
-#         context['category'] = self.object.id
-#         return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
 
 
 # 先把这个代码关起来：
 '''cats.html：
 < a href="{% url 'category' c.slug %}" class="btn btn-lg btn-outline"></ a>
 '''
+
+
 def category(request, category_name_slug):
 
     # Create a context dictionary which we can pass to the template rendering engine.
@@ -101,7 +85,7 @@ def category(request, category_name_slug):
         articles = Article.objects.filter(category=category)
 
         # Adds our results list to the template context under name pages.
-        context_dict['article'] = articles
+        context_dict['articles'] = articles
         # We also add the category object from the database to the context dictionary.
         # We'll use this in the template to verify that the category exists.
         context_dict['category'] = category

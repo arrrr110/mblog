@@ -6,18 +6,18 @@
 
 {% block body_block %}
 
-{% for article in article %}
+{% for article in articles %}
 <div  class="text-left">
 <ul>
 <div class="hero-unit">
     <h1 class="skills" >
-        <a href="{% url 'rick:article-detail' article.id %}">{{ article.title }}</a>
-        <a href="{{ article.category.slug }}/">
+        <a href="{{ article.id }}/">{{ article.title }}</a>
+        
             <small>{{ article.category.name }}</small>
-        </a>
+        
     </h1>
         <p>{{ article.body | truncatechars:100 }}……
-        <a href="{{ article.category.slug }}/{{ article.id }}/">Read more >></a></p>
+        <a href="{{ article.id }}/">Read more >></a></p>
        
 </div>
     <p class="auth-span">
@@ -35,9 +35,8 @@
     </p>
 </ul>
 </div>
-
 {% empty %}
-打印打印{{ context_dict }}
+没有文章{{ context_dict }}
     <li>category_list.html:No articles yet.</li>
 {% endfor %}
 </ul>
