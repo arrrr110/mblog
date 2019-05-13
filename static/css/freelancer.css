@@ -25,7 +25,7 @@ a.active {
     color: #18bc9c;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
@@ -34,7 +34,7 @@ h6 {
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
-}
+} */
 
 hr.star-light,
 hr.star-primary,
@@ -130,8 +130,8 @@ header .intro-text .skills {
 
 @media(min-width:768px) {
     header .container {
-        padding-top: 100px;
-        padding-bottom: 100px;
+        padding-top: 10px;
+        padding-bottom: 8px;
     }
 
     header .intro-text .name {
@@ -147,10 +147,10 @@ section {
     padding: 100px 0;
 }
 
-section h2 {
+/* section h2 {
     margin: 0;
     font-size: 3em;
-}
+} */
 
 section.success {
     color: #fff;
@@ -321,9 +321,9 @@ footer .footer-below {
     outline: 0;
 }
 
-.navbar-default {
+/* .navbar-default {
     background-color: #186384;
-}
+} */
 
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
     color: #eee;
@@ -333,10 +333,10 @@ footer .footer-below {
     color: #eee;
 }
 
-a, a:hover, a:focus, a:active, a.active {
+/* a, a:hover, a:focus, a:active, a.active {
     outline: 0;
     color: #127fbc;
-}
+} */
 
 dl dd {
     margin-bottom: 24px;

@@ -1,0 +1,38 @@
+{% extends "rick/base.html" %}
+
+{% block body_block %}
+
+<form role="form"  method="post" action=".">
+{% csrf_token %}
+<h1>Register with Blog<small>It's not necessary.</small></h1>
+<h2 class="form-signin-heading">Sign Up Here</h2>
+
+<div class="form-group" >
+ <p class="required"> <label for="id_username">Username:</label>
+     <input class="form-control"  id="id_username" maxlength="30" name="username" type="text"  placeholder="Enter username"/></p>
+</div>
+ <div class="form-group">
+    <p class="required"><label for="id_email">E-mail:</label>
+        <input class="form-control" id="id_email" name="email" type="email" placeholder="Enter email" /></p>
+ </div>
+<div class="form-group">
+    <p class="required"><label for="id_password1">Password:</label>
+        <input class="form-control" id="id_password1" name="password1" type="password" placeholder="Enter password" /></p>
+</div>
+
+<h4><small>
+你的密码不能与你的其他个人信息太相似。<br>
+你的密码必须包含至少 8 个字符。<br>
+你的密码不能是大家都爱用的常见密码。<br>
+你的密码不能全部为数字。<br>
+</small></h4>
+
+<div class="form-group">
+    <p class="required"><label for="id_password2">Password (again):</label>
+ <input class="form-control" id="id_password2" name="password2" type="password" placeholder="Enter password again" /></p>
+</div>
+
+<button type="submit" url="{% url 'rick:index' %}" class="btn btn-default">Submit</button>
+
+</form>
+{% endblock %}

@@ -7,6 +7,16 @@ from django.shortcuts import reverse
 import markdown
 import re
 
+
+# for django-mdeditor
+from django.db import models
+from mdeditor.fields import MDTextField
+
+class ExampleModel(models.Model):
+    name = models.CharField(max_length=10)
+    content = MDTextField()
+# for django-mdeditor-end
+
 # 分类
 class Category(models.Model):
 
@@ -67,8 +77,8 @@ class Keyword(models.Model):
 # 文章
 class Article(models.Model):
     title = models.CharField(verbose_name="文章标题",max_length=128)
-    # 文章内容
-    body = models.TextField(verbose_name='文章内容')
+    # 文章内容 # for django-mdeditor
+    body = MDTextField(verbose_name='文章内容')
     create_date = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
     update_date = models.DateTimeField(verbose_name='修改时间', auto_now=True)
     views = models.IntegerField(verbose_name='阅览量', default=0)
@@ -93,6 +103,7 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse('blog:article', kwargs={'slug': self.slug})
 
+    # for django-mdeditor 并未起效，在views另有代码
     def body_to_markdown(self):
         return markdown.markdown(self.body, extensions=[
             'markdown.extensions.extra',

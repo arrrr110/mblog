@@ -11,16 +11,18 @@
 <ul>
 <div class="hero-unit">
     <h1 class="skills" >
-        <a href="{{ article.category.slug }}/{{ article.id }}/">{{ article.title }}
+        <!-- 改变链接样式，base.html -->
+        <a href="{{ article.category.slug }}/{{ article.id }}/" class="black">{{ article.title }}
         </a>
         <a href="{{ article.category.slug }}/">
             <small>{{ article.category.name }}</small>
         </a>
     </h1>
+
+
         <p>{{ article.body | truncatechars:100 }}……
         <a href="{{ article.category.slug }}/{{ article.id }}/">Read more >></a></p>
        
-</div>
     <p class="auth-span">
             <small><span class="muted"><i class="fa fa-clock-o"></i> {{ article.create_date|date:'Y-m-d' }}</span> 
         <span class="muted"><i class="fa fa-eye"></i> {{ article.views }}浏览</span>
@@ -34,7 +36,11 @@
             <span class="count">{{ article.likes }}</span>喜欢</a>
         </span></small>
     </p>
+</div>
+
 </ul>
+
+<hr>
 </div>
 {% empty %}
     <li>index.html:No articles yet.gogogo</li>

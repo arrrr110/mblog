@@ -1,0 +1,20 @@
+{% extends "rick/base.html" %}
+
+{% block body_block %}
+
+<link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+
+<form id="login_form" class="form-signin" role="form" method="post" action=".">
+{% csrf_token %}
+<h1>Login to rick's blog</h1>
+<h2 class="form-signin-heading">Please sign in</h2>
+<p>Username:</p>
+<input class="form-control" placeholder="Username" id="id_username" maxlength="254" name="username" type="text" required autofocus=""/>
+<br>
+<p>Password:</p>
+<input type="password" class="form-control" placeholder="Password" id="id_password" name="password"  required />
+<br>
+        <button class="btn btn-primary" type="submit" value="Submit" >Sign in</button>
+        </form>
+
+{% endblock %}

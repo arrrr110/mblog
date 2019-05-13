@@ -1,0 +1,18 @@
+{% extends 'rick/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}About{% endblock %}
+
+{% block body_block %}
+    <div class="page-header">
+                <h1>关于Rango</h1>
+            </div>
+            <div>
+            <p>欢迎访问Rango！</p>
+            <p>点击这里返回<a href="{% url 'index' %}">首页</a>。</p>
+            <p>这是一张Rango的图片！</p>
+
+            <img  width="300" src="{% static 'rango.jpg' %}" alt="Rango" /> 
+            </div>
+{% endblock %}

@@ -15,8 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from registration.backends.simple.views import RegistrationView
+
+from django.conf.urls.static import static # for markdown-editor
+from django.conf import settings # for markdown-editor
+
+# Create a new class that redirects the user to the index page, if successful at logging
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self,request, user):
+        return '/index/'
 
 urlpatterns = [
-    path('index/',include('rick.urls', namespace= 'rick')),
+    path('index/', include('rick.urls', namespace= 'rick')),
     path('admin/', admin.site.urls),
+     #Add in this url pattern to override the default pattern in accounts.
+    path('accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
+    path('accounts/', include('registration.backends.simple.urls')),
+    path('mdeditor/', include('mdeditor.urls')), # for markdown-editor
 ]
+
+if settings.DEBUG:
+    # static files (images, css, javascript, etc.)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

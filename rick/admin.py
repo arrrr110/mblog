@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Article, Tag, Category, Keyword
+from .models import Article, Tag, Category, Keyword, ExampleModel
+
+# for markdown-editor
+from . import models
+admin.site.register(models.ExampleModel)
+# for django-mdeditor-end
 
 
 @admin.register(Article)

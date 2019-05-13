@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rick',
+    'registration',# 用户注册库
+    'mdeditor',# for django-mdeditor —— Django Markdown 富文本 app 插件 教程 https://segmentfault.com/a/1190000013671248 整合markdown编辑器并实现代码高亮 https://blog.csdn.net/duke10/article/details/81033686
 ]
 
 MIDDLEWARE = [
@@ -146,3 +148,15 @@ SITE_DESCRIPTION = "敖瑞的个人网站，分享学习心得，记录职业成
 
 # 网站关键词，用于SEO
 SITE_KEYWORDS = "敖瑞,网络,IT,互联网,博客,Python,医疗,大数据"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads') # for django-mdeditor
+MEDIA_URL = '/media/' # for django-mdeditor
+
+# 用户注册的相关配置，更多信息见文档：https://django-registration-redux.readthedocs.org/en/latest/quickstart.html
+REGISTRATION_OPEN = True        # If True, users can register
+ACCOUNT_ACTIVATION_DAYS = 7     # One-week activation window; you may, of course, use a different value.
+REGISTRATION_AUTO_LOGIN = True  # If True, the user will be automatically logged in.
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/index/'  # The page you want users to arrive at after they successful log in
+LOGIN_URL = '/accounts/login/'  # The page users are directed to if they are not logged in,
+# and are trying to access pages requiring authentication
