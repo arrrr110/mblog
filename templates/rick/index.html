@@ -12,13 +12,13 @@
 <div class="hero-unit">
     <h1 class="skills" >
         <!-- 改变链接样式，base.html -->
-        <a href="{{ article.category.slug }}/{{ article.id }}/" class="black">{{ article.title }}
+        <a href="{{ article.category.slug }}/{{ article.id }}/" class="black" style="text-decoration: none">{{ article.title }}
         </a>
-        <a href="{{ article.category.slug }}/">
+        <a href="{{ article.category.slug }}/" style="text-decoration: none">
             <small>{{ article.category.name }}</small>
         </a>
     </h1>
-
+        <br>
 
         <p>{{ article.body | truncatechars:100 }}……
         <a href="{{ article.category.slug }}/{{ article.id }}/">Read more >></a></p>

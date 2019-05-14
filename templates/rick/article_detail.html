@@ -8,28 +8,21 @@
 
 {% if object %}
 
-<style>
-.entry-content br {
-    line-height: 2.5;
-}
-</style>
-
 <div  class="text-left">
 <ul>
-<div class="hero-unit">
-    <h1 class="skills" >
+<div>
+    <h1>
         {{ article.title }}
     </h1>
-        <p class="entry-content">
+        <p>
             {{ article.body|safe }}
         </p>
-        
-    <p class="auth-span">
+    <p>
             <small><span class="muted"><i class="fa fa-clock-o"></i> {{ article.create_date|date:'Y-m-d' }}</span> 
         <span class="muted"><i class="fa fa-eye"></i> {{ article.views }}浏览</span>
         <span class="muted">
             <i class="fa fa-comments-o"></i> 
-                <a target="_blank" href="/article/{{ article.slug }}#comments">评论</a>
+                <a target="_blank" href="">评论</a>
         </span>
         <span class="muted">
             <a href="javascript:;" data-action="ding" data-id="{{ article.id }}" id="Addlike" class="action">
