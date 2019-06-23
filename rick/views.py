@@ -8,7 +8,7 @@ from django.views.generic import ListView, DetailView
 from django.utils import timezone
 from datetime import datetime
 import markdown
-from markdown.extensions.toc import TocExtension  # 锚点的拓展
+from markdown.extensions.toc import TocExtension  # 锚点的拓展s
 from django.utils.text import slugify
 
 

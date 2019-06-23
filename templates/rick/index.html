@@ -1,5 +1,5 @@
 ﻿{% extends 'rick/base.html' %}
-
+<!-- 这是首页文章列表 -->
 {% load staticfiles %}
 
 {% block title %}敖瑞的博客{{ category_name }}{% endblock %}
@@ -22,19 +22,24 @@
 
         <p>{{ article.body | truncatechars:100 }}……
         <a href="{{ article.category.slug }}/{{ article.id }}/">Read more >></a></p>
-       
+
+        <!-- {% block articlefoot_block %} article_foot.html 未取得目标数据{% endblock %} -->
+
     <p class="auth-span">
-            <small><span class="muted"><i class="fa fa-clock-o"></i> {{ article.create_date|date:'Y-m-d' }}</span> 
-        <span class="muted"><i class="fa fa-eye"></i> {{ article.views }}浏览</span>
-        <span class="muted">
-            <i class="fa fa-comments-o"></i> 
-                <a target="_blank" href="/article/{{ article.slug }}#comments">评论</a>
+            <small><span class="muted"><i class="glyphicon glyphicon-time"></i> {{ article.create_date|date:'Y-m-d' }}</span> 
+        <span class="muted"><i class="glyphicon glyphicon-eye-open"></i> {{ article.views }}浏览</span>
+        <span >
+                <a class="glyphicon glyphicon-comment" target="_blank" href="/article/{{ article.slug }}#comments">评论</a>
         </span>
-        <span class="muted">
+        <span >
             <a href="javascript:;" data-action="ding" data-id="{{ article.id }}" id="Addlike" class="action">
-            <i class="fa fa-heart-o"></i>
-            <span class="count">{{ article.likes }}</span>喜欢</a>
-        </span></small>
+            <span class="glyphicon glyphicon-thumbs-up"></span>{{ article.likes }}喜欢</a>
+        </span>
+        {% if user.is_authenticated %}
+        <a class="glyphicon glyphicon-edit" href="http://aorui.me/admin/rick/article/{{ article.id }}/change/">编辑</a>
+        {% else %}
+        {% endif %}
+    </small>
     </p>
 </div>
 

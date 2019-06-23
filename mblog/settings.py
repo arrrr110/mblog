@@ -29,9 +29,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2tyte73aviwcw&w8yvr(#dxz3oyk3%xg=k8#@=ee9%7@8)42i4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -139,10 +139,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+#STATIC_ROOT = "/rick/mblog/static/"
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'/static/','/rick/mblog/static/'),
+]
 # 网站描述，用于SEO
 SITE_DESCRIPTION = "敖瑞的个人网站，分享学习心得，记录职业成长。"
 

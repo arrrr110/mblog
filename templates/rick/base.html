@@ -1,43 +1,33 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   {% load staticfiles %}
+<!-- 这是前端页面的基础板块，用于决定整个项目的框架、布局以及静态文件 -->
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="gpu.js is a single-file JavaScript library for GPGPU in the browser. gpu.js will automatically compile specially written JavaScript functions into shader language and run them on the GPU using the WebGL API. In the case where WebGL is not available, the functions will still run in regular JavaScript." />
-
-  <meta property="og:title" content="gpu.js - GPU Accelerated JavaScript" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://gpu.rocks/" />
-  <meta property="og:image" content="http://gpu.rocks/img/ogimage.png" />
+  <meta name="description" content="这是敖瑞的个人博客，记录生活点点滴滴。版权所有，违法必究。" />
+  <meta name="aorui" content="">
+  <!-- <link rel="icon" href="http://getbootstrap.com/favicon.ico">这是页头的小logo -->
 
   <title> {% block title %} 敖瑞的博客 {% endblock %}</title>
-  <script src="{% static 'js/_vdmlvoww2lpxcfjnusmakakv_w.js'%}"></script><link rel="icon" href="img/jelly.png">
+  <!-- <script src="{% static 'js/_vdmlvoww2lpxcfjnusmakakv_w.js'%}"></script><link rel="icon" href="img/jelly.png"> -->
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
 
-  <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-  <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
-  
-  <!-- Custom CSS 把gpu.js的样式去掉反而更有美感了--> 
-  <!-- <link href="{% static 'css/freelancer.css' %}" rel="stylesheet"> -->
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <!-- Custom Fonts -->
-  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
-  <link href="{% static 'css/094dd124bedf49d4b57cb3dcd50cd51c.css' %}" rel="stylesheet" type="text/css">
-  <link href="{% static 'css/f171996e801c4ccdae96fae5c99f88ca.css' %}" rel="stylesheet" type="text/css">
+<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
   <!-- highlight.js -->
   <link rel="stylesheet" href="{% static 'css/color-brewer.min.css' %}">
   <script src="{% static 'js/highlight.min.js'%}"></script>
   <script>hljs.initHighlightingOnLoad();</script>
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="static/js/html5shiv.js"></script>
-  <script src="static/js/respond.min.js"></script>
-  <![endif]-->
 
   <!-- 标题样式 -->
   <style type="text/css">
@@ -54,12 +44,12 @@
       background-color:rgb(249, 249, 250);
     }
     a.tt:hover {color: #444;}
-    p{
+    /* p{
     font-size: 20px;
     }
     p.tt{
     font-size: 15px;
-    }
+    } */
 
     </style>
 </head>
@@ -72,6 +62,7 @@
   <!-- Header -->
   <header style="background-color:rgb(230, 244, 252)">
   <!-- 导航条 -->
+  
   <div class="container">
       <div class="row">
         <!-- 导航条 -->
@@ -85,7 +76,7 @@
             <!--获取分类信息-->
             {% get_category_list category %}
             <a href="https://github.com/arrrr110/mblog" class="tt btn btn-lg btn-outline">
-              <i class="fa fa-github"></i> Github 交流
+              <i class="glyphicon glyphicon-globe"></i> Github 交流
             </a>
           
         </div>
@@ -107,12 +98,13 @@
 
 
                     <ul class="nav navbar-nav navbar-left">
-                        <a href="{% url 'rick:index' %}">Home</a>
+                        <a class="glyphicon glyphicon-home" href="{% url 'rick:index' %}">Home</a>
                             {% if user.is_authenticated %}
-                            <a href="{% url 'auth_logout' %}?next=/index/">Login Out</a>
+                            <a class="glyphicon glyphicon-log-out" href="{% url 'auth_logout' %}?next=/index/">LoginOut</a>
+                            <a class="glyphicon glyphicon-pencil" href="http://aorui.me/admin/rick/article/">AddBlog</a>
                             {% else %}
-                            <a href="{% url 'registration_register' %}?next={{ request.path }}">Register Here</a>
-                            <a href="{% url 'auth_login' %}">Login</a> 
+                            <a class="glyphicon glyphicon-user" href="{% url 'registration_register' %}?next={{ request.path }}">RegisterHere</a>
+                            <a class="glyphicon glyphicon-log-in" href="{% url 'auth_login' %}">Login</a> 
                             {% endif %}
                       </ul>
                       <div class="page-header">
@@ -138,7 +130,7 @@
                   版权声明：
                 </h3>
                 <p class="tt">
-                  本独立博客所发布之作品，非商业机构及个人可免费、全文转载（含标题），转载过程中不得做二次加工，并注明文章作者：敖瑞
+                  本博客建于2019年5月15日，本独立博客所发布之作品，非商业机构及个人可免费、全文转载（含标题），转载过程中不得做二次加工，并注明文章作者：敖瑞
                 </p>
                 <!-- <p>
                   <a class="btn" href="#">查看更多 »</a>
@@ -180,8 +172,9 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            Copyright &copy; 2019 模仿网站gpu.js Team.人生苦短，能C+V就不要自己造轮子了
-            <a class="github-button" href="https://github.com/arrrr110" data-icon="octicon-star" data-show-count="true" aria-label="Star gpujs/gpu.js on GitHub">Star</a>
+            Copyright &copy; 页面使用前端框架
+            <a class="
+            glyphicon glyphicon-globe" href="https://v3.bootcss.com/" >Bootstrap</a>
           </div>
         </div>
       </div>

@@ -6,5 +6,5 @@
 
     {% endif %}
         <a  href="{% url 'rick:category' c.slug %}" class="tt btn btn-lg btn-outline">
-            <i class="fa fa-book"></i> {{ c.name }}</a>
+            <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> {{ c.name }}</a>
 {% endfor %}
